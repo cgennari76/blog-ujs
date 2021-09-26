@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Use rails generator to get started:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails new blog-ujs
+rails webpacker:install
+bundle add devise
+rails generate devise:install
+rails generate controller home index #landing page
+rails g scaffold post title:string body:text
+rails g scaffold comment commenter:string body:text post:belongs_to
+rails generate devise User
