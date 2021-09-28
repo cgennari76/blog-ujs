@@ -9,3 +9,5 @@
   <strong>Name:</strong>
   <%= @post.body %>
 </p>
+
+<%= render partial: 'posts/comment', collection: @post.comments.reverse %>
