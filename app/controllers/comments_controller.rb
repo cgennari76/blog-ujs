@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   
     # GET /comments or /comments.json
     def index
-        @comments = @post.comments
+      @posts = Post.all
     end
   
     # GET /comments/1 or /comments/1.json
@@ -21,12 +21,13 @@ class CommentsController < ApplicationController
   
     # POST /comments or /comments.json
     def create
-        @post = Post.find(params[:post_id])
-        @comment = @post.comments.create(params[:comment].permit(:commenter, :body))
+        @comment = Comment.new(comment_params)
+        @comment.post_id = params[:post_id]
     
         respond_to do |format|
           if @comment.save
-            format.html { redirect_to post_comments_path(@post), notice: 'Comment was successfully created.' } # changed the redirect to @post
+            format.html { redirect_to post_path(@comment.post), notice: 'Comment was successfully created.' } # changed the redirect to @post
+            # format.html { render :show, status: :created, location: @post }
         end
       end
     end
